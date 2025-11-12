@@ -1,0 +1,82 @@
+[project]
+name = "simet"
+version = "1.0.0post1"
+description = "Synthetic image metrics - An evaluation framework for your synthetic images"
+readme = "README.md"
+authors = [
+    {name = "Oriol Agost Batalla", email = "oriol.agost@udl.cat"},
+    {name = "Oriol Agost Batalla", email = "oriol.agost@gft.com"},
+]
+requires-python = "~=3.12.0"
+dependencies = [
+    "faiss-gpu-cu12[fix-cuda]>=1.11.0",
+    "kagglehub>=0.3.12",
+    "pyyaml>=6.0.2",
+    "scikit-learn>=1.7.1",
+    "torch>=2.4.1",
+    "torchvision>=0.19.1",
+    "typer>=0.19.2",
+]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/dcg-udl-cat/simet"
+Documentation = "https://simet.udl.cat"
+Source = "https://github.com/dcg-udl-cat/simet"
+Issues = "https://github.com/dcg-udl-cat/simet/issues"
+
+[tool.ruff]
+# Match Black’s defaults
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle (style errors)
+    "F",   # pyflakes (logic errors, unused vars, imports)
+    "B",   # flake8-bugbear (common bugs/pitfalls)
+    "I",   # isort (import sorting)
+]
+ignore = [
+    "E501",
+]
+
+[tool.pyrefly]
+project-includes = ["**/*"]
+project-excludes = [
+    "**/node_modules",
+    "**/__pycache__",
+    "**/*venv/**/*",
+    "**/dist/**/*",
+    "**/logs/**/*",
+]
+[tool.setuptools.package-data]
+simet = ["log/*.json"]  # Include the log configuration on the build
+
+[dependency-groups]
+dev = [
+    "pyrefly>=0.35.0",
+    "ruff>=0.13.3",
+]
+docs = [
+    "mkdocs==1.6.1",
+    "mkdocs-material==9.5.39",
+    "mkdocstrings>=0.30.0",
+    "mkdocstrings-python==1.18.2",
+    "mkdocs-gen-files==0.5.0",
+    "mkdocs-literate-nav==0.6.1",
+    "mkdocs-section-index==0.3.9",
+]
+
+[project.scripts]
+simet = "simet.cli.cli:app"

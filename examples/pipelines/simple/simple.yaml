@@ -1,0 +1,7 @@
+pipeline:
+  real_path: my_real_imgs_path
+  synth_path: my_synth_imgs_path
+
+  metrics:
+    - FID
+    - PrecisionRecall

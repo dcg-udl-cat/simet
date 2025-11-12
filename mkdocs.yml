@@ -1,0 +1,51 @@
+site_name: Simet
+site_description: "Simet, SInthethic IMage METrics, an evaluation framework for your synthetic images."
+site_url: https://simet.udl.cat
+repo_url: https://github.com/dcg-udl-cat/simet
+repo_name: dcg-udl-cat/simet
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+    - toc.follow
+    - header.autohide
+
+plugins:
+  - search
+  - gen-files:
+        scripts:
+        - docs/_scripts/gen_api_nav.py
+  - literate-nav
+  - section-index
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            docstring_section_style: table
+            show_root_heading: true
+            show_signature: true
+            separate_signature: true
+            merge_init_into_class: true
+            show_source: true
+            line_length: 88
+
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - API reference: reference/
+
+strict: true
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.snippets

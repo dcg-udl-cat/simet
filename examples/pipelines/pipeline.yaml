@@ -1,0 +1,25 @@
+pipeline:
+  loader:
+    real_provider:
+      type: LocalProviderWithoutClass
+      path: my_real_imgs_path
+    synth_provider:
+      type: LocalProviderWithoutClass
+      path: my_synth_imgs_path
+    provider_transform:
+      type: InceptionTransform
+    feature_extractor:
+      type: InceptionFeatureExtractor
+
+  restraints:
+    - type: FIDRestraint
+      upper_bound: 30.0
+      lower_bound: 0.0
+
+    - type: PrecisionRecallRestraint
+      upper_bound: [1.0, 1.0]   # [precision, recall]
+      lower_bound: [0.7, 0.7]
+
+    - type: RocAucRestraint
+      upper_bound: 0.6
+      lower_bound: 0.4
